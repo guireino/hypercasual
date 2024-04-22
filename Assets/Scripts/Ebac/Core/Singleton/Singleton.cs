@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ebac.Core.Singleton{
+
+namespace Ebac.Core.Singleton{ // o namespace vai criar um pacote onde todas que tivera associação ele 
 
     // <T> e um parâmetro esta dizendo o tipo de class e where e para detalhar
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour{

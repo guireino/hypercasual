@@ -9,7 +9,7 @@ using DG.Tweening;
 public class PlayerController : Singleton<PlayerController>{
 
     private Vector3 _pos, _startPosition;
-    private float _currentSpeed;
+    private float _currentSpeed, _baseSpeedToAnimation = 7;
     private bool _canRun;
 
     [Header("Lerp")]
@@ -28,6 +28,9 @@ public class PlayerController : Singleton<PlayerController>{
 
     [Header("Coin Setup")]
     public GameObject coinCollector;
+
+    [Header("Animation")]
+    public AnimatorManager animatorManager;
 
     private void Start() {
         _startPosition = transform.position; //salvando posição original 
@@ -50,7 +53,10 @@ public class PlayerController : Singleton<PlayerController>{
 
     public void OnCollisionEnter(Collision col) {
         if(col.transform.tag == tagToCheckEnemy){
-            if(!invincible) EndGame();
+            if(!invincible){
+                MoveBack(col.transform);
+                EndGame(AnimatorManager.AnimationType.DEAD);
+            }
         }
     }
 
@@ -60,13 +66,19 @@ public class PlayerController : Singleton<PlayerController>{
         }
     }
 
-    private void EndGame(){
+    private void MoveBack(Transform t){ // fazer personagem mover para atrás quando ele morre
+        t.DOMoveZ(1f, .3f).SetRelative();
+    }
+
+    private void EndGame(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE){
         _canRun = false;
         endScreen.SetActive(true);
+        animatorManager.Play(animationType);
     }
 
     public void StartToRun(){
         _canRun = true;
+        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedToAnimation); //fazendo calculo para animação seguir speed player
     }
 
     #region POWER UPS
