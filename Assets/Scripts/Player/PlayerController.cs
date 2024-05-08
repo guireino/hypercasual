@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>{
 
+    [SerializeField] private BounceHelper _bounceHelper;
     private Vector3 _pos, _startPosition;
     private float _currentSpeed, _baseSpeedToAnimation = 7;
     private bool _canRun;
@@ -35,6 +36,14 @@ public class PlayerController : Singleton<PlayerController>{
     private void Start() {
         _startPosition = transform.position; //salvando posição original 
         ResetSpeed();
+    }
+
+    public void Bounce(){
+
+        if(_bounceHelper != null){
+            _bounceHelper.Bounce();
+        }
+
     }
 
     // Update is called once per frame

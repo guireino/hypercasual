@@ -11,13 +11,14 @@ public class ItemCollectableCoin : ItemCollectableBase{
 
     private void Start() {
         //CoinsAnimationManager.Instance.RegisterCoin(this);
+        CoinsAnimationManager.Instance.RegisterCoin(this);
     }
 
     protected override void OnCollect(){
         base.OnCollect();
         collider.enabled = false;
         collect = true;
-        //PlayerController.Instance.Bounce();
+        PlayerController.Instance.Bounce();
     }
 
 
