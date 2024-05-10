@@ -9,7 +9,7 @@ public class BounceHelper : MonoBehaviour{
     public float scaleDuration = .2f;
     public float scaleBounce = 1.2f;
     public Ease ease = Ease.OutBack;
-
+    
     private void Update() {
 
         if(Input.GetKeyDown(KeyCode.E)){

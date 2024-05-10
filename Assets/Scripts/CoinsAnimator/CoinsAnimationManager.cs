@@ -5,7 +5,7 @@ using Ebac.Core.Singleton;
 using DG.Tweening;
 using System.Linq;
 
-public class CoinsAnimationManager : Singleton<CoinsAnimationManager>{
+public class CoinsAnimationManager : Singleton<CoinsAnimationManager>{  // singleton pode instanciar em todo as class que ele foi chamado
 
     public List<ItemCollectableCoin> itens;
 
