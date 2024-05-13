@@ -15,15 +15,16 @@ public class CoinsAnimationManager : Singleton<CoinsAnimationManager>{  // singl
     public Ease ease = Ease.OutBack;
 
     // Start is called before the first frame update
-    void Start(){
+    void Awake(){
         itens = new List<ItemCollectableCoin>();
     }
 
     void Update() {
 
-        if(Input.GetKeyDown(KeyCode.T)){
-            StartAnimations();
-        }    
+        StartAnimations();
+        // if(Input.GetKeyDown(KeyCode.T)){
+        //     StartAnimations();
+        // }    
     }
 
     public void RegisterCoin(ItemCollectableCoin i){
